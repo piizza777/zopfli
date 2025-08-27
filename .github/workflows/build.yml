@@ -26,7 +26,7 @@ jobs:
       - name: Build zopflipng.exe (PNG optimizer)
         shell: msys2 {0}
         run: |
-          x86_64-w64-mingw32-g++ -O2 -W -Wall -Wextra -Wno-unused-function -ansi -pedantic \
+          x86_64-w64-mingw32-g++ -O2 -W -Wall -Wextra -static -static-libgcc -static-libstdc++ -Wno-unused-function -ansi -pedantic \
             src/zopfli/blocksplitter.c \
             src/zopfli/cache.c \
             src/zopfli/deflate.c \
