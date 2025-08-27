@@ -23,14 +23,6 @@ jobs:
             mingw-w64-x86_64-gcc
             make
 
-      - name: Build zopfli.exe (gzip/deflate tool)
-        shell: msys2 {0}
-        run: |
-          x86_64-w64-mingw32-g++ -O2 \
-            src/zopfli_bin.cc \
-            src/zopfli/*.c \
-            -I src/ -o zopfli.exe
-
       - name: Build zopflipng.exe (PNG optimizer)
         shell: msys2 {0}
         run: |
@@ -47,8 +39,10 @@ jobs:
             src/zopfli/util.c \
             src/zopfli/zlib_container.c \
             src/zopfli/zopfli_lib.c \
-            src/zopflipng/*.cc \
-            src/zopflipng/lodepng/*.cpp \
+            src/zopflipng/zopflipng_bin.cc \
+            src/zopflipng/zopflipng_lib.cc \
+            src/zopflipng/lodepng/lodepng.cpp \
+            src/zopflipng/lodepng/lodepng_util.cpp \
             -I src/ -o zopflipng.exe
 
       - name: Upload artifacts
@@ -56,5 +50,4 @@ jobs:
         with:
           name: zopfli-windows-binaries
           path: |
-            zopfli.exe
             zopflipng.exe
